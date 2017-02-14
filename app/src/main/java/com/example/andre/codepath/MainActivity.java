@@ -32,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvItems = (ListView) findViewById(R.id.lvItems);
-
-        //readItems();
-        taskAdapter = new TaskAdapter(this, TaskStorage.tasks);//new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, TaskStorage.tasks);
+        new TaskDB(this);
+        ArrayList<Task> tasks = TaskDB.readAll();
+        taskAdapter = new TaskAdapter(this, tasks);
         lvItems.setAdapter(taskAdapter);
 
         setUpListViewListener();
+
+
     }
 /*
     public void onAddItem(View v) {
@@ -52,18 +54,17 @@ public class MainActivity extends AppCompatActivity {
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                TaskStorage.tasks.remove(position);
-                taskAdapter.notifyDataSetChanged();
-                //writeItems();
-                return true;
+            TaskDB.remove(position);
+            taskAdapter.notifyDataSetChanged();
+            return true;
             }
         });
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(MainActivity.this, EditItemActivity.class);
-                i.putExtra("todo", "asd" + position);
-                startActivity(i);
+            Intent i = new Intent(MainActivity.this, EditItemActivity.class);
+            i.putExtra("taskPosition", position);
+            startActivity(i);
             }
         });
     }

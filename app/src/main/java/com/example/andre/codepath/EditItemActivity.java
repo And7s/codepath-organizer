@@ -35,7 +35,8 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         task.notes = etTaskNotes.getText().toString();
         task.priority = prioritySpinner.getSelectedItemPosition();
         task.status = 1;
-        TaskStorage.tasks.add(task);
+
+        TaskDB.insertOrUpdate(task);
         finish();
     }
 
@@ -55,8 +56,11 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         adapter.setDropDownViewResource(R.layout.spinner_item);
         prioritySpinner.setAdapter(adapter);
 
-        String s = intent.getStringExtra("todo");
-        Log.d("asd", s);
+        int taskPosition = intent.getIntExtra("taskPosition", -1);
+        if (taskPosition != -1) {
+            task = TaskDB.getTask(taskPosition);
+        }
+
         inflateWithTask();
     }
 
