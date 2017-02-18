@@ -37,10 +37,22 @@ public class MainActivity extends AppCompatActivity {
         taskAdapter = new TaskAdapter(this, tasks);
         lvItems.setAdapter(taskAdapter);
 
+
         setUpListViewListener();
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.actionbar);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+        setTitle("");
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        taskAdapter.notifyDataSetChanged();
+    }
+
 /*
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
@@ -74,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("todo", "asd");
         startActivity(i);
     }
+
 /*
     private void readItems() {
         File filesDir = getFilesDir();

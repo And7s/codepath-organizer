@@ -19,9 +19,7 @@ public class TaskDB extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String TASKS_TABLE_NAME = "tasks";
     private static ArrayList<Task> tasks = new ArrayList<>();
-
     private static TaskDB instance;
-
 
     public TaskDB(Context context) {
         super(context, DATABASE_NAME , null, DATABASE_VERSION);

@@ -9,81 +9,85 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="#CCC"
     tools:context="com.example.andre.codepath.EditItemActivity">
 
-
-    <GridLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
-        android:rowCount="4">
-        <TextView
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task name"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
 
-/>
-        <EditText
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:id="@+id/etTaskName"
-            android:layout_width="wrap_content"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:onClick="selectDate"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:layout_height="wrap_content"
-            android:text="Due date"/>
-        <TextView
-            android:textSize="20sp"
-            android:text="10/12/15"
-            android:id="@+id/tvDueDate"
-            android:onClick="selectDate"
-            android:padding="10dp"
-            android:layout_gravity="fill"
-            android:textColor="#000"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="4">
+            <TextView
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Task name" />
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:id="@+id/etTaskName"
+                android:layout_width="wrap_content"/>
 
 
-
-        <TextView
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:layout_height="wrap_content"
-            android:text="task notes"/>
-        <EditText
-            android:textSize="20sp"
-            android:text="notes"
-            android:id="@+id/etTaskNotes"
-            android:padding="10dp"
-            android:onClick="selectDate"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
-
-        <TextView
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:layout_height="wrap_content"
-            android:text="Priority"/>
-
-        <Spinner
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/prioritySpinner" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:onClick="selectDate"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:text="Due date"/>
+            <TextView
+                android:textSize="20sp"
+                android:text="10/12/15"
+                android:id="@+id/tvDueDate"
+                android:onClick="selectDate"
+                android:padding="10dp"
+                android:layout_gravity="fill"
+                android:textColor="#000"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
 
-    </GridLayout>
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:text="task notes"/>
+            <EditText
+                android:textSize="20sp"
+                android:text="notes"
+                android:id="@+id/etTaskNotes"
+                android:padding="10dp"
+                android:onClick="selectDate"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:text="Priority"/>
+
+            <Spinner
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prioritySpinner" />
+
+
+        </GridLayout>
+    </android.support.v7.widget.CardView>
 
 
 

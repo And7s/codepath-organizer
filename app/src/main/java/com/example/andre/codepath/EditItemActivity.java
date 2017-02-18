@@ -37,6 +37,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         task.status = 1;
 
         TaskDB.insertOrUpdate(task);
+
         finish();
     }
 
@@ -59,6 +60,10 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         int taskPosition = intent.getIntExtra("taskPosition", -1);
         if (taskPosition != -1) {
             task = TaskDB.getTask(taskPosition);
+            prioritySpinner.setSelection(task.priority);
+            setTitle("edit task");
+        } else {
+            setTitle("create new task");
         }
 
         inflateWithTask();
