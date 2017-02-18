@@ -2,10 +2,11 @@
 Todo/ taskmanagement app by Andreas Schmelz as application to the CodePath android bootcamp
 
 screencap
-![screenacap of the app](https://imgur.com/a/KRABA)
+
+![screenacap of the app](http://i.imgur.com/fs6IddA.gif)
 
 
-User features
+## User features
 create tasks with
   - name
   - notes
@@ -19,9 +20,9 @@ Filter and sort taks by
   - due date
   - status (if done or not)
 
-additionally the app will highlight taks that are not done, but over the due date.
+ - highlight not done overdue tasks
 
-Technical Features
+## Technical Features
   - persistant sql data storage
   - uses material design components (fab, cardview, datepicker, icons)
   - splash screen
