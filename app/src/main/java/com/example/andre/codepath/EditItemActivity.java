@@ -34,7 +34,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         task.name = etTaskName.getText().toString();
         task.notes = etTaskNotes.getText().toString();
         task.priority = prioritySpinner.getSelectedItemPosition();
-        task.status = 1;
+        task.status = 0;
 
         TaskDB.insertOrUpdate(task);
 

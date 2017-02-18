@@ -1,23 +1,16 @@
 package com.example.andre.codepath;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<Task> taskAdapter;
     ListView lvItems;
 
-
+    private int filterId = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,52 +26,55 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lvItems = (ListView) findViewById(R.id.lvItems);
         new TaskDB(this);
-        ArrayList<Task> tasks = TaskDB.readAll();
-        taskAdapter = new TaskAdapter(this, tasks);
-        lvItems.setAdapter(taskAdapter);
-
-
-        setUpListViewListener();
+        getData();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.actionbar);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         setTitle("");
-
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.filter_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.filter0:
+                filterId = 0;
+                break;
+            case R.id.filter1:
+                filterId = 1;
+               break;
+            case R.id.filter2:
+                filterId = 2;
+                break;
+            case R.id.filter3:
+                filterId = 3;
+                break;
+        }
+        Log.d("Filter", "is now "+ filterId);
+        getData();
+        return true;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        taskAdapter.notifyDataSetChanged();
+        getData();
+
     }
 
-/*
-    public void onAddItem(View v) {
-        EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-        String itemText = etNewItem.getText().toString();
-        taskAdapter.add(itemText);
-        etNewItem.setText("");
-        writeItems();
-    }*/
-
-    private void setUpListViewListener() {
-        lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            TaskDB.remove(position);
-            taskAdapter.notifyDataSetChanged();
-            return true;
-            }
-        });
-        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent i = new Intent(MainActivity.this, EditItemActivity.class);
-            i.putExtra("taskPosition", position);
-            startActivity(i);
-            }
-        });
+    public void getData() {
+        ArrayList<Task> tasks = TaskDB.readAll(filterId);
+        taskAdapter = new TaskAdapter(this, tasks);
+        lvItems.setAdapter(taskAdapter);
+        taskAdapter.notifyDataSetChanged();
     }
 
     public void addNewTask(View v) {
@@ -86,27 +82,4 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("todo", "asd");
         startActivity(i);
     }
-
-/*
-    private void readItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            items = new ArrayList<String>(FileUtils.readLines(todoFile));
-        } catch (IOException e) {
-            items = new ArrayList<String>();
-        }
-    }
-
-    private void writeItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            FileUtils.writeLines(todoFile, items);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
 }

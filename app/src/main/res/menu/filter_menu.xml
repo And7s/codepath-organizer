@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/filter0"
+        android:title="filter by creation"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/filter1"
+        android:title="filter by priority"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/filter2"
+        android:title="filter by due date"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/filter3"
+        android:title="show done tasks"
+        app:showAsAction="never"/>
+
+
+</menu>

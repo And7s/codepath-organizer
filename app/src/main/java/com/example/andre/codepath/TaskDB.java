@@ -67,9 +67,26 @@ public class TaskDB extends SQLiteOpenHelper {
         }
     }
 
-    public static ArrayList<Task> readAll() {
+    public static ArrayList<Task> readAll(int filterId) {
         SQLiteDatabase db = instance.getReadableDatabase();
-        Cursor res =  db.rawQuery("SELECT * FROM " + TASKS_TABLE_NAME + " ORDER BY id ASC", null);
+        String order = "";
+        Cursor res;
+
+        if (filterId != 3) {
+            switch (filterId) {
+                case 0:
+                    order = "id ASC"; break;
+                case 1:
+                    order = "priority DESC"; break;
+                case 2:
+                    order = "dueYear, dueMonth, dueDay ASC"; break;
+
+            }
+            res =  db.rawQuery("SELECT * FROM " + TASKS_TABLE_NAME + " WHERE status=0 ORDER BY " + order, null);
+        } else {
+            res =  db.rawQuery("SELECT * FROM " + TASKS_TABLE_NAME + " WHERE status=1 ORDER BY id ASC" + order, null);
+        }
+
 
         int numRes = res.getCount();
         tasks = new ArrayList<>(numRes);
